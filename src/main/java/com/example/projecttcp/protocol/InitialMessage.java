@@ -3,10 +3,14 @@ package com.example.projecttcp.protocol;
 import java.util.List;
 
 public class InitialMessage implements Message{
-    List<Chat> messages;
+    List<Chat> chats;
 
-    public InitialMessage(List<Chat> messages) {
-        this.messages = messages;
+    public List<Chat> getChats() {
+        return chats;
+    }
+
+    public InitialMessage(List<Chat> chats) {
+        this.chats = chats;
     }
 
     @Override
