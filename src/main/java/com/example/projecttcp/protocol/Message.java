@@ -1,5 +1,7 @@
 package com.example.projecttcp.protocol;
 
-public interface Message {
+import java.io.Serializable;
+
+public interface Message extends Serializable {
     MessageType getType();
 }
