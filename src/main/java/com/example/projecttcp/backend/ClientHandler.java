@@ -21,21 +21,28 @@ public class ClientHandler implements Runnable {
 
     public ClientHandler(Socket socket) {
         this.clientSocket = socket;
-        try {
-            in = new ObjectInputStream(socket.getInputStream());
-            out = new ObjectOutputStream(socket.getOutputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
     public void run() {
         try {
+            System.out.println("Creating input stream");
+            in = new ObjectInputStream(clientSocket.getInputStream());
+            System.out.println("Creating output stream");
+            out = new ObjectOutputStream(clientSocket.getOutputStream());
+            System.out.println("Created streams");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-            while (true) {
+        try {
+            while (in != null && out != null) {
                 try {
                     Message message = (Message) in.readObject();
+
+                    if (message == null) {
+                        break;
+                    }
 
                     switch (message.getType()) {
                         case REGISTRATION:
@@ -44,22 +51,33 @@ public class ClientHandler implements Runnable {
                             System.out.println(username + " has joined the chat.");
 
                             var initialMessage = new InitialMessage(Server.chats);
+                            System.out.printf("Sending all previous messages to %s\n", username);
                             out.writeObject(initialMessage);
+                            break;
 
                         case CHAT:
                             var chatMessage = (ChatMessage) message;
                             Server.addChat(new Chat(username, chatMessage.getMessage()));
+                            System.out.printf("Received message '%s' from %s\n", chatMessage.getMessage(), username);
                             break;
 
                         default:
                             break;
                     }
+                } catch (EOFException e) {
+                    ;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         } finally {
             try {
+                if (in != null) {
+                    in.close();
+                }
+                if (out != null) {
+                    out.close();
+                }
                 clientSocket.close();
                 Server.clients.remove(this);
                 System.out.println(username + " has left the chat.");

@@ -27,7 +27,7 @@
          </children>
       </Pane>
       <TextArea fx:id="txt_message" layoutY="600.0" prefHeight="100.0" prefWidth="650.0" promptText="ENTER YOUR MESSAGE HERE" wrapText="true" />
-      <Button fx:id="btn_send" layoutX="651.0" layoutY="600.0" mnemonicParsing="false" onAction="#refreshChat" prefHeight="45.0" prefWidth="50.0" text="SEND" />
+      <Button fx:id="btn_send" layoutX="651.0" layoutY="600.0" mnemonicParsing="false" onAction="#sendButtonClicked" prefHeight="45.0" prefWidth="50.0" text="SEND" />
       <Button fx:id="btn_shift" layoutX="651.0" layoutY="645.0" mnemonicParsing="false" onAction="#shiftisSender" prefHeight="55.0" prefWidth="50.0" text="SHIFT" />
    </children>
 </Pane>
