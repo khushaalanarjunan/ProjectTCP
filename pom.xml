@@ -69,6 +69,22 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.2.1</version>
+        <executions>
+            <execution>
+            <!-- Configuration for running mvn exec:java -->
+            <goals>
+                <goal>java</goal>
+            </goals>
+            </execution>
+        </executions>
+        <configuration>
+            <mainClass>com.example.projecttcp.backend.Server</mainClass>
+        </configuration>
+        </plugin>
     </plugins>
   </build>
 </project>

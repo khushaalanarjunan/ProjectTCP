@@ -3,6 +3,7 @@ package com.example.projecttcp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -59,6 +60,7 @@ public class ChatController {
 
         HBox messageContainer = new HBox();
         messageContainer.setAlignment(isSender ? Pos.TOP_RIGHT : Pos.TOP_LEFT);
+        VBox.setMargin(messageContainer, new Insets(4, 0, 4, 0));
         if(isSender) {
             messageContainer.getChildren().addAll(chatMessage, arrow);
         }
@@ -101,12 +103,10 @@ public class ChatController {
     @FXML
     private void initialize() {
         try {
-            btn_send.setDisable(true);
-
             txt_message.textProperty().addListener(new ChangeListener<String>() {
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    btn_send.setDisable(newValue.trim().isEmpty());
+                    btn_send.setDisable(newValue.isEmpty());
                 }
             });
 
@@ -125,6 +125,7 @@ public class ChatController {
     private void sendButtonClicked(ActionEvent event) {
         refreshChat();
     }
+
     @FXML
     private void login(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("chat-list.fxml"));
