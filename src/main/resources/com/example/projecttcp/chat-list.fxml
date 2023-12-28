@@ -8,26 +8,24 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projecttcp.ChatController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" style="-fx-background-color: #202020; -fx-control-inner-background: #202020;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projecttcp.ChatController">
    <children>
-      <Pane prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: white;">
+      <Pane prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #202020; -fx-control-inner-background: #202020; -fx-border-color: #202020;">
          <children>
-            <ScrollPane fx:id="paneChat" layoutY="54.0" prefHeight="546.0" prefWidth="700.0">
+            <ScrollPane fx:id="paneChat" layoutY="54.0" prefHeight="546.0" prefWidth="700.0" style="-fx-background-color: #2C2C2C; -fx-control-inner-background: #2C2C2C; -fx-border-color: #2C2C2C;" stylesheets="@scrollbar.css">
                <content>
-                  <VBox fx:id="chatContainer" prefHeight="550.0" prefWidth="700.0" />
+                  <VBox fx:id="chatContainer" prefHeight="550.0" prefWidth="700.0" style="-fx-background-color: #2C2C2C;" styleClass="scroll-bar" />
                </content>
             </ScrollPane>
-            <Label layoutX="307.0" layoutY="14.0" prefHeight="36.0" prefWidth="76.0" text="CHATS">
+            <Label layoutX="266.0" layoutY="14.0" prefHeight="36.0" prefWidth="126.0" text="Group Chat" textFill="LIGHTGRAY">
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
-            <Button fx:id="btn_logout" mnemonicParsing="false" onAction="#logout" prefHeight="55.0" prefWidth="127.0" text="LOGOUT" />
+            <Button fx:id="btn_logout" mnemonicParsing="false" onAction="#logout" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #202020;" textFill="LIGHTGRAY" />
          </children>
       </Pane>
-      <TextArea fx:id="txt_message" layoutY="600.0" prefHeight="100.0" prefWidth="650.0" promptText="ENTER YOUR MESSAGE HERE" wrapText="true" />
-      <Button fx:id="btn_send" layoutX="651.0" layoutY="600.0" mnemonicParsing="false" onAction="#sendButtonClicked" prefHeight="45.0" prefWidth="50.0" text="SEND" />
-      <Button fx:id="btn_shift" layoutX="651.0" layoutY="645.0" mnemonicParsing="false" onAction="#shiftisSender" prefHeight="55.0" prefWidth="50.0" text="SHIFT" />
+      <TextArea fx:id="txt_message" layoutY="600.0" prefHeight="100.0" prefWidth="650.0" promptText="Enter your message here" style="-fx-control-inner-background: #202020; -fx-background-color: #202020; -fx-prompt-text-fill: #D3D3D3;" wrapText="true" />
+      <Button fx:id="btn_send" layoutX="650.0" layoutY="623.0" mnemonicParsing="false" onAction="#sendButtonClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #005C4B; -fx-background-radius: 500; -fx-control-inner-background: #005C4B; -fx-border-color: #005C4B;" textFill="LIGHTGRAY" />
    </children>
 </Pane>

@@ -15,7 +15,10 @@ public class LoginController {
     private Button btn_login;
 
     @FXML
-    private TextField tf_username;
+    private TextField txt_name;
+
+    @FXML
+    private TextField txt_ipaddress;
 
     @FXML
     private void login(ActionEvent event) throws IOException {
@@ -23,8 +26,8 @@ public class LoginController {
         try {
             Parent root = fxmlLoader.load();
             var chatController = (ChatController) fxmlLoader.getController();
-            chatController.setUsername(tf_username.getText());
-            chatController.setAddress("localhost");
+            chatController.setUsername(txt_name.getText());
+            chatController.setAddress(txt_ipaddress.toString());
 
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             stage.setOnHidden(e->{

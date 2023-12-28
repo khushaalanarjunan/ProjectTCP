@@ -6,21 +6,30 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projecttcp.LoginController">
+<Pane prefHeight="700.0" prefWidth="700.0" style="-fx-background-color: #202020;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projecttcp.LoginController">
    <children>
-      <Pane layoutX="148.0" layoutY="167.0" prefHeight="318.0" prefWidth="412.0" style="-fx-background-color: antiquewhite;">
+      <Pane layoutX="148.0" layoutY="167.0" prefHeight="318.0" prefWidth="412.0" style="-fx-background-color: #2C2C2C; -fx-background-radius: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);;">
          <children>
-            <TextField fx:id="tf_username" layoutX="52.0" layoutY="196.0" prefHeight="25.0" prefWidth="309.0" />
-            <Label layoutX="52.0" layoutY="168.0" text="NAME">
+            <TextField fx:id="txt_name" layoutX="51.0" layoutY="140.0" prefHeight="25.0" prefWidth="309.0" promptText="Enter your name" />
+            <Label layoutX="51.0" layoutY="112.0" text="NAME" textFill="LIGHTGRAY">
                <font>
                   <Font size="16.0" />
                </font></Label>
-            <Label layoutX="126.0" layoutY="63.0" prefHeight="60.0" prefWidth="173.0" text="Chat Application">
+            <Label layoutX="52.0" layoutY="23.0" prefHeight="60.0" prefWidth="173.0" text="Chat Application" textFill="LIGHTGRAY">
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
-            <Button fx:id="btn_login" layoutX="52.0" layoutY="246.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="309.0" text="LET'S CHAT" />
+            <Button fx:id="btn_login" layoutX="52.0" layoutY="246.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="309.0" text="LET'S CHAT">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <TextField fx:id="txt_ipaddress" layoutX="51.0" layoutY="202.0" prefHeight="25.0" prefWidth="309.0" promptText="Enter your IP Address" text="localhost" />
+            <Label layoutX="51.0" layoutY="174.0" text="IP address" textFill="LIGHTGRAY">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

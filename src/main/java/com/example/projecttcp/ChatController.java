@@ -8,6 +8,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
@@ -15,6 +17,8 @@ import javafx.stage.Stage;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.util.List;
@@ -31,8 +35,6 @@ public class ChatController {
     private TextArea txt_message;
     @FXML
     private Button btn_send;
-    @FXML
-    private Button btn_shift;
     private Boolean shift = true;
 
     @FXML
@@ -68,18 +70,20 @@ public class ChatController {
             Label chatMessage = new Label(String.format("%s : %s", chat.getUsername(), chat.getMessage()));
             Boolean isSender = chat.getUsername().equals(username);
             chatMessage.setWrapText(true);
-            String backgroundColor = isSender ? "-fx-background-color: rgba(0, 41, 255, 0.83);"
-                    : "-fx-background-color: rgba(220, 220, 220, 0.83);";
-            String textColor = isSender ? "-fx-text-fill: white;" : "-fx-text-fill: black;";
+            String backgroundColor = isSender ? "-fx-background-color: #005C4B;"
+                    : "-fx-background-color: #353535;";
+            String textColor = isSender ? "-fx-text-fill: #D3D3D3;" : "-fx-text-fill: #D3D3D3;";
 
             chatMessage.setStyle(
                     backgroundColor +
                             "-fx-border-radius: 15; " +
+                            "-fx-background-radius: 15; " +
                             "-fx-padding: 10; " +
                             "-fx-font-size: 16; " +
+                            "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);"+
                             textColor);
-
             Region arrow = createArrow(isSender);
+            arrow.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);");
 
             HBox messageContainer = new HBox();
             messageContainer.setAlignment(isSender ? Pos.TOP_RIGHT : Pos.TOP_LEFT);
@@ -108,8 +112,8 @@ public class ChatController {
         arrow.setMinSize(10, 10);
         arrow.setMaxSize(10, 10);
 
-        String arrowStyle = isSender ? "-fx-background-color: rgba(0, 41, 255, 0.83);"
-                : "-fx-background-color: rgba(220, 220, 220, 0.83);";
+        String arrowStyle = isSender ? "-fx-background-color: #005C4B;"
+                : "-fx-background-color: #353535;";
 
         arrow.setStyle(arrowStyle);
 
@@ -132,12 +136,16 @@ public class ChatController {
             chatService = new ChatService(this, address);
             new Thread(chatService).start();
 
+
             btn_send.setDisable(true);
+            btn_send.setVisible(false);
+
 
             txt_message.textProperty().addListener(new ChangeListener<String>() {
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                     btn_send.setDisable(newValue.isEmpty());
+                    btn_send.setVisible(!newValue.isEmpty());
                 }
             });
 
@@ -149,6 +157,17 @@ public class ChatController {
             });
         } catch (Exception e) {
             System.out.println(e.toString());
+            e.printStackTrace();
+        }
+
+        try {
+            Image imagesend = new Image(getClass().getResourceAsStream("icons8-send-32.png"));
+            btn_send.setGraphic(new ImageView(imagesend));
+            Image imagelogout = new Image(getClass().getResourceAsStream("icons8-logout-32.png"));
+            btn_logout.setGraphic(new ImageView(imagelogout));
+            paneChat.setFitToWidth(true);
+            paneChat.lookup(".scroll-bar").setStyle("-fx-background-color: #000;");
+        }catch (Exception e){
             e.printStackTrace();
         }
     }
