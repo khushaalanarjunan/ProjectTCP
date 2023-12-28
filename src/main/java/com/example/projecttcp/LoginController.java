@@ -24,6 +24,7 @@ public class LoginController {
             Parent root = fxmlLoader.load();
             var chatController = (ChatController) fxmlLoader.getController();
             chatController.setUsername(tf_username.getText());
+            chatController.setAddress("localhost");
 
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             stage.setOnHidden(e->{

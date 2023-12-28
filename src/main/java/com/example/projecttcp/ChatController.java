@@ -39,8 +39,17 @@ public class ChatController {
     private Button btn_logout;
 
     String username;
-
+    String address;
     ChatService chatService;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
 
     public String getUsername() {
         return username;
@@ -120,7 +129,7 @@ public class ChatController {
     private void initialize() {
         try {
 
-            chatService = new ChatService(this, "localhost");
+            chatService = new ChatService(this, address);
             new Thread(chatService).start();
 
             btn_send.setDisable(true);
