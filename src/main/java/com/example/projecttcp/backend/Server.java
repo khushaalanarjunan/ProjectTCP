@@ -4,21 +4,26 @@ import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import com.example.projecttcp.protocol.Chat;
 import com.example.projecttcp.protocol.ChatMessage;
 
 public class Server {
-    private static final int PORT = 3030;
     public static final List<ClientHandler> clients = new ArrayList<>();
     public static List<Chat> chats = new ArrayList<>();
+    
 
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = null;
         try {
-            serverSocket = new ServerSocket(PORT);
+            Properties properties = new Properties();
+            properties.load(new java.io.FileInputStream(".env"));
+            int port = Integer.parseInt(properties.getProperty("PORT"));
+
+            serverSocket = new ServerSocket(port);
             InetAddress serverAddress = InetAddress.getLocalHost();
-            System.out.println("Server is running on address " + serverAddress.getHostAddress() + " and port " + PORT);
+            System.out.println("Server is running on address " + serverAddress.getHostAddress() + " and port " + port);
 
             while (true) {
                 Socket clientSocket = serverSocket.accept();
