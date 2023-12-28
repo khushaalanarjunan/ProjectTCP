@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projecttcp.ChatController">
+<Pane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projecttcp.LoginController">
    <children>
       <Pane layoutX="148.0" layoutY="167.0" prefHeight="318.0" prefWidth="412.0" style="-fx-background-color: antiquewhite;">
          <children>
-            <TextField layoutX="52.0" layoutY="196.0" prefHeight="25.0" prefWidth="309.0" />
+            <TextField fx:id="tf_username" layoutX="52.0" layoutY="196.0" prefHeight="25.0" prefWidth="309.0" />
             <Label layoutX="52.0" layoutY="168.0" text="NAME">
                <font>
                   <Font size="16.0" />
