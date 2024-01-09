@@ -14,9 +14,6 @@ public class client {
 
     public static void main(String[] args) {
         try {
-            //System.out.print("Enter the server address: ");
-            //String serverAddress = new Scanner(System.in).nextLine();
-
             // Load configuration from the .env file
             Properties properties = new Properties();
             properties.load(new java.io.FileInputStream(".env"));

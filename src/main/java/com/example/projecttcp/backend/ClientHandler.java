@@ -57,7 +57,7 @@ public class ClientHandler implements Runnable {
 
                         case CHAT:
                             var chatMessage = (ChatMessage) message;
-                            Server.addChat(new Chat(username, chatMessage.getMessage()));
+                            Server.addChat(new Chat(username, chatMessage.getMessage(), chatMessage.getImage()));
                             System.out.printf("Received message '%s' from %s\n", chatMessage.getMessage(), username);
                             break;
 
@@ -90,4 +90,5 @@ public class ClientHandler implements Runnable {
     public void sendMessage(Message message) throws IOException {
         out.writeObject(message);
     }
+
 }

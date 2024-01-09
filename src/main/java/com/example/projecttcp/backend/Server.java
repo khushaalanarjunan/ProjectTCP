@@ -49,6 +49,7 @@ public class Server {
             }
 
             var message = new ChatMessage(newChat);
+            message.setImage(newChat.getImage());
             
             try {
                 client.sendMessage(message);

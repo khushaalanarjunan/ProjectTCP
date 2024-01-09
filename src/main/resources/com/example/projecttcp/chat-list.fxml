@@ -25,7 +25,13 @@
             <Button fx:id="btn_logout" mnemonicParsing="false" onAction="#logout" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #202020;" textFill="LIGHTGRAY" />
          </children>
       </Pane>
-      <TextArea fx:id="txt_message" layoutY="600.0" prefHeight="100.0" prefWidth="650.0" promptText="Enter your message here" style="-fx-control-inner-background: #202020; -fx-background-color: #202020; -fx-prompt-text-fill: #D3D3D3;" wrapText="true" />
-      <Button fx:id="btn_send" layoutX="650.0" layoutY="623.0" mnemonicParsing="false" onAction="#sendButtonClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #005C4B; -fx-background-radius: 500; -fx-control-inner-background: #005C4B; -fx-border-color: #005C4B;" textFill="LIGHTGRAY" />
+      <TextArea fx:id="txt_message" layoutX="50.0" layoutY="600.0" prefHeight="100.0" prefWidth="600.0" promptText="Enter your message here" style="-fx-control-inner-background: #202020; -fx-background-color: #202020; -fx-prompt-text-fill: #D3D3D3;" wrapText="true" />
+      <Button fx:id="btn_send" layoutX="650.0" layoutY="623.0" mnemonicParsing="false" onAction="#sendButtonClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #005C4B; -fx-background-radius: 500; -fx-control-inner-background: #005C4B;" textFill="LIGHTGRAY" />
+      <Button fx:id="btn_uploadImage" layoutY="625.0" mnemonicParsing="false" onAction="#uploadImageButtonClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #202020; -fx-background-radius: 500; -fx-control-inner-background: #202020;" textFill="#e43232" />
+      <Label fx:id="lbl_selected_file" layoutX="8.0" layoutY="550.0" prefHeight="36.0" prefWidth="252.0" textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

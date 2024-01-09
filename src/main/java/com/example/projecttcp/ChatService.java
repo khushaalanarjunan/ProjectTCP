@@ -61,7 +61,8 @@ public class ChatService implements Runnable {
 
                         case CHAT:
                             var chatMessage = (ChatMessage) message;
-                            var chat = new Chat(chatMessage.getUsername(), chatMessage.getMessage());
+                            var chat = new Chat(chatMessage.getUsername(), chatMessage.getMessage(),
+                                    chatMessage.getImage());
                             chatController.addChatMessage(chat);
                             break;
 
@@ -86,9 +87,10 @@ public class ChatService implements Runnable {
         }
     }
 
-    public void sendMessage(String message) throws IOException {
-        out.writeObject(new ChatMessage(message));
+    public void sendMessage(String message, byte [] image) throws IOException {
+        out.writeObject(new ChatMessage(message, image));
     }
+
 
     public void close() {
         try {
