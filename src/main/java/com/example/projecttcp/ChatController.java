@@ -23,7 +23,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 
-
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -55,7 +54,7 @@ public class ChatController {
     String username;
     String address;
     ChatService chatService;
-    byte [] image=null;
+    byte[] image = null;
 
     public String getAddress() {
         return address;
@@ -64,7 +63,6 @@ public class ChatController {
     public void setAddress(String address) {
         this.address = address;
     }
-
 
     public String getUsername() {
         return username;
@@ -81,11 +79,11 @@ public class ChatController {
     public void addChatMessage(Chat chat) {
         Platform.runLater(() -> {
 
-
             Label chatMessage = new Label(String.format("%s : %s", chat.getUsername(), chat.getMessage()));
             Boolean isSender = chat.getUsername().equals(username);
-            if(!isSender) {
-                Media sound = new Media(new File("src/main/resources/com/example/projecttcp/messagetone.mp3").toURI().toString());
+            if (!isSender) {
+                Media sound = new Media(
+                        new File("src/main/resources/com/example/projecttcp/messagetone.mp3").toURI().toString());
                 javafx.scene.media.MediaPlayer mediaPlayer = new javafx.scene.media.MediaPlayer(sound);
                 mediaPlayer.play();
             }
@@ -101,7 +99,7 @@ public class ChatController {
                             "-fx-background-radius: 15; " +
                             "-fx-padding: 10; " +
                             "-fx-font-size: 16; " +
-                            "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);"+
+                            "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);" +
                             textColor);
             Region arrow = createArrow(isSender);
             arrow.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);");
@@ -111,11 +109,11 @@ public class ChatController {
             messageContainer.setAlignment(isSender ? Pos.TOP_RIGHT : Pos.TOP_LEFT);
             imageContainer.setAlignment(isSender ? Pos.TOP_RIGHT : Pos.TOP_LEFT);
             VBox.setMargin(messageContainer, new Insets(4, 0, 4, 0));
-            ImageView imageView=null;
-
+            ImageView imageView = null;
 
             Region border = new Region();
-            border.setStyle("-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 2; -fx-border-radius: 20;");
+            border.setStyle(
+                    "-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 2; -fx-border-radius: 20;");
             border.setMinSize(100, 100);
 
             StackPane pane = new StackPane();
@@ -129,7 +127,7 @@ public class ChatController {
                 imageView.setFitHeight(100);
                 imageView.setPreserveRatio(true);
                 pane.getChildren().add(imageView);
-                //chatContainer.getChildren().add(imageView);
+                // chatContainer.getChildren().add(imageView);
             } else {
                 System.out.println("No image for this chat");
             }
@@ -147,7 +145,7 @@ public class ChatController {
             }
             HBox.setHgrow(messageContainer, Priority.ALWAYS);
             chatContainer.getChildren().add(messageContainer);
-            if(imageView!=null){
+            if (imageView != null) {
                 chatContainer.getChildren().add(imageContainer);
                 image = null;
                 btn_send.setDisable(true);
@@ -188,8 +186,6 @@ public class ChatController {
         });
     }
 
-
-
     @FXML
     private void initialize() {
         try {
@@ -197,18 +193,15 @@ public class ChatController {
             chatService = new ChatService(this, address);
             new Thread(chatService).start();
 
-
             btn_send.setDisable(true);
             btn_send.setVisible(false);
             lbl_selected_file.setVisible(false);
 
-
-
             txt_message.textProperty().addListener(new ChangeListener<String>() {
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    btn_send.setDisable(newValue.isEmpty() && image==null);
-                    btn_send.setVisible(!newValue.isEmpty() || image!=null);
+                    btn_send.setDisable(newValue.isEmpty() && image == null);
+                    btn_send.setVisible(!newValue.isEmpty() || image != null);
                 }
             });
 
@@ -232,7 +225,7 @@ public class ChatController {
             btn_uploadImage.setGraphic(new ImageView(imageupload));
             paneChat.setFitToWidth(true);
             paneChat.lookup(".scroll-bar").setStyle("-fx-background-color: #000;");
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -243,7 +236,7 @@ public class ChatController {
 
         txt_message.setText("");
         addChatMessage(message, image);
-        new Thread(()->{
+        new Thread(() -> {
             try {
                 chatService.sendMessage(message, image);
             } catch (IOException e) {
@@ -256,8 +249,7 @@ public class ChatController {
     private void uploadImageButtonClicked(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
-        );
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
 
         File selectedFile = fileChooser.showOpenDialog(null);
 
@@ -284,7 +276,7 @@ public class ChatController {
         close();
     }
 
-    public void close(){
+    public void close() {
         chatService.close();
     }
 }

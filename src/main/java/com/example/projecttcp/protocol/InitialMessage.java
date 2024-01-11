@@ -2,7 +2,7 @@ package com.example.projecttcp.protocol;
 
 import java.util.List;
 
-public class InitialMessage implements Message{
+public class InitialMessage implements Message {
     List<Chat> chats;
 
     public List<Chat> getChats() {
@@ -18,5 +18,4 @@ public class InitialMessage implements Message{
         return MessageType.INITIAL;
     }
 
-    
 }

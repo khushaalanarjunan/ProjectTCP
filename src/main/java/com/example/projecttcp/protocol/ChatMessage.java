@@ -4,7 +4,7 @@ public class ChatMessage implements Message {
     String username;
     String message;
     private byte[] image;
-    
+
     public ChatMessage(String message, byte[] image) {
         this(null, message, image);
     }
@@ -19,10 +19,9 @@ public class ChatMessage implements Message {
         this(chat.getUsername(), chat.getMessage(), chat.getImage());
     }
 
-
     @Override
     public MessageType getType() {
-       return MessageType.CHAT;
+        return MessageType.CHAT;
     }
 
     public String getUsername() {

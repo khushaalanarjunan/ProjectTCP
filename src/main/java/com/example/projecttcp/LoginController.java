@@ -30,7 +30,7 @@ public class LoginController {
             chatController.setAddress(txt_ipaddress.toString());
 
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-            stage.setOnHidden(e->{
+            stage.setOnHidden(e -> {
                 chatController.close();
             });
             stage.getScene().setRoot(root);

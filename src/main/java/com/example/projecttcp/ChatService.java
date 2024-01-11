@@ -87,10 +87,9 @@ public class ChatService implements Runnable {
         }
     }
 
-    public void sendMessage(String message, byte [] image) throws IOException {
+    public void sendMessage(String message, byte[] image) throws IOException {
         out.writeObject(new ChatMessage(message, image));
     }
-
 
     public void close() {
         try {

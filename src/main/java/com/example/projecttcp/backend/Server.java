@@ -12,7 +12,6 @@ import com.example.projecttcp.protocol.ChatMessage;
 public class Server {
     public static final List<ClientHandler> clients = new ArrayList<>();
     public static List<Chat> chats = new ArrayList<>();
-    
 
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = null;
@@ -50,7 +49,7 @@ public class Server {
 
             var message = new ChatMessage(newChat);
             message.setImage(newChat.getImage());
-            
+
             try {
                 client.sendMessage(message);
             } catch (Exception e) {
