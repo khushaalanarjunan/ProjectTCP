@@ -42,6 +42,8 @@ public class Server {
 
     public static void addChat(Chat newChat) {
         chats.add(newChat);
+        var message = new ChatMessage(newChat);
+        ArrayList<ClientHandler> pendingRemovalClients = new ArrayList<>();
         for (ClientHandler client : clients) {
             if (client.getUsername().equals(newChat.getUsername())) {
                 continue;
@@ -54,7 +56,10 @@ public class Server {
                 client.sendMessage(message);
             } catch (Exception e) {
                 System.err.printf("Failed to send message to %s\n", client.getUsername());
+                pendingRemovalClients.add(client);
             }
         }
+
+        clients.removeAll(pendingRemovalClients);
     }
 }
