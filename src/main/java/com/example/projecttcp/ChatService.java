@@ -55,11 +55,13 @@ public class ChatService implements Runnable {
 
                     switch (message.getType()) {
                         case INITIAL:
+                            System.out.println("Received initialization message from server");
                             var initialMessage = (InitialMessage) message;
                             chatController.initializeMessages(initialMessage.getChats());
                             break;
 
                         case CHAT:
+                            System.out.println("Received chat message from server");
                             var chatMessage = (ChatMessage) message;
                             var chat = new Chat(chatMessage.getUsername(), chatMessage.getMessage(),
                                     chatMessage.getImage());
@@ -67,6 +69,7 @@ public class ChatService implements Runnable {
                             break;
 
                         default:
+                            System.out.printf("Received unknown message from server with type '%s'\n", message.getType());
                             break;
                     }
 

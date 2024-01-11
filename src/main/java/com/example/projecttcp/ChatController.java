@@ -74,13 +74,16 @@ public class ChatController {
 
     public void addChatMessage(Chat chat) {
         Platform.runLater(() -> {
-
+            System.out.printf(
+                    "Adding Chat with %s\n",
+                    chat.getImage() != null ? "image" : "message " + chat.getMessage());
             Label chatMessage = new Label(String.format("%s : %s", chat.getUsername(), chat.getMessage()));
             Boolean isSender = chat.getUsername().equals(username);
             if (!isSender) {
                 Media sound = new Media(
                         new File("src/main/resources/com/example/projecttcp/messagetone.mp3").toURI().toString());
                 javafx.scene.media.MediaPlayer mediaPlayer = new javafx.scene.media.MediaPlayer(sound);
+                System.out.println(String.format("Play sound when received chat from %s", chat.getUsername()));
                 mediaPlayer.play();
             }
 
@@ -123,9 +126,6 @@ public class ChatController {
                 imageView.setFitHeight(100);
                 imageView.setPreserveRatio(true);
                 pane.getChildren().add(imageView);
-                // chatContainer.getChildren().add(imageView);
-            } else {
-                System.out.println("No image for this chat");
             }
 
             if (isSender) {
@@ -141,6 +141,7 @@ public class ChatController {
             }
             HBox.setHgrow(messageContainer, Priority.ALWAYS);
             chatContainer.getChildren().add(messageContainer);
+
             if (imageView != null) {
                 chatContainer.getChildren().add(imageContainer);
                 image = null;
