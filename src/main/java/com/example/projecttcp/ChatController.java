@@ -216,6 +216,10 @@ public class ChatController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        chatContainer.heightProperty().addListener(observable -> {
+            paneChat.setVvalue(1D);
+        });
     }
 
     @FXML
