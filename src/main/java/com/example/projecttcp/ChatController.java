@@ -153,15 +153,6 @@ public class ChatController {
         });
     }
 
-    @FXML
-    private void shiftisSender() {
-        if (shift) {
-            shift = false;
-        } else {
-            shift = true;
-        }
-    }
-
     private Region createArrow(boolean isSender) {
         Region arrow = new Region();
         arrow.setMinSize(10, 10);
