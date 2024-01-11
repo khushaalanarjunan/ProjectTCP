@@ -43,7 +43,6 @@ public class ChatController {
     private Button btn_uploadImage;
     @FXML
     private Label lbl_selected_file;
-    private Boolean shift = true;
 
     @FXML
     private Button btn_logout;
