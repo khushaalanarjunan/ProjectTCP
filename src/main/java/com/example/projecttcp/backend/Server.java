@@ -45,12 +45,9 @@ public class Server {
         var message = new ChatMessage(newChat);
         ArrayList<ClientHandler> pendingRemovalClients = new ArrayList<>();
         for (ClientHandler client : clients) {
-            if (client.getUsername().equals(newChat.getUsername())) {
+            if (client.getUsername() != null && client.getUsername().equals(newChat.getUsername())) {
                 continue;
             }
-
-            var message = new ChatMessage(newChat);
-            message.setImage(newChat.getImage());
 
             try {
                 client.sendMessage(message);
