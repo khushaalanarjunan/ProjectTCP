@@ -212,7 +212,7 @@ public class ChatController {
             Image imageupload = new Image(getClass().getResourceAsStream("icons8-upload-32.png"));
             btn_uploadImage.setGraphic(new ImageView(imageupload));
             paneChat.setFitToWidth(true);
-            paneChat.lookup(".scroll-bar").setStyle("-fx-background-color: #000;");
+            chatContainer.setStyle("-fx-background-color: #000;");
         } catch (Exception e) {
             e.printStackTrace();
         }
